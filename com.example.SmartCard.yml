@@ -21,8 +21,8 @@ modules:
        - rmdir /app/sbin || true
     sources:
        - type: archive
-         url: https://github.com/LudovicRousseau/PCSC/archive/pcsc-1.9.0.tar.gz
-         sha256: 9e9b332bf8d37123d0c29e0ac359140b64cfd2bdf7be341a8d39e49fda592df2
+         url: https://pcsclite.apdu.fr/files/pcsc-lite-1.9.5.tar.bz2
+         sha256: 9ee3f9b333537562177893559ad4f7b8d5c23ebe828eef53056c02db14049d08
 
   - name: pcsc-lite-ccid
     sources:
