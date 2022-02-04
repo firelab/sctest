@@ -1,0 +1,40 @@
+app-id: com.example.SmartCard
+runtime: org.gnome.Platform
+runtime-version: '41' 
+sdk: org.gnome.Sdk
+command: /usr/bin/bash
+
+finish-args:
+   - --socket=pcsc
+
+modules:
+  - shared-modules/libusb/libusb.json
+  - name: pcsc-lite
+    config-opts:
+       - --disable-libudev
+       - --disable-libsystemd
+       - --without-systemdsystemunitdir
+       - --disable-serial
+       - --disable-documentation
+    post-install:
+       - rm /app/sbin/pcscd
+       - rmdir /app/sbin || true
+    sources:
+       - type: archive
+         url: https://github.com/LudovicRousseau/PCSC/archive/pcsc-1.9.0.tar.gz
+         sha256: 9e9b332bf8d37123d0c29e0ac359140b64cfd2bdf7be341a8d39e49fda592df2
+
+  - name: pcsc-lite-ccid
+    sources:
+       - type: archive
+         url: https://ccid.apdu.fr/files/ccid-1.5.0.tar.bz2
+         sha256: 81549b3422469d503996d03a3aed2ef1375b359167f10d66be9e3844e729322e
+
+
+  - name: opensc
+    buildsystem: autotools
+    sources:
+       - type: archive
+         url: https://github.com/OpenSC/OpenSC/archive/refs/tags/0.22.0.tar.gz
+         sha256: 138acf5724573d68bdfaf988bb05c00391edbfe262e69835813ed6bd00748c7a
+
