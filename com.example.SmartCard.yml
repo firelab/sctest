@@ -4,6 +4,9 @@ runtime-version: '5.15'
 sdk: org.kde.Sdk
 command: /usr/bin/bash
 
+build-options:
+   cflags: "-O2 -g"
+
 finish-args:
    - --socket=pcsc
 
