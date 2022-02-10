@@ -1,7 +1,7 @@
 app-id: com.example.SmartCard
-runtime: org.gnome.Platform
-runtime-version: '41' 
-sdk: org.gnome.Sdk
+runtime: org.kde.Platform
+runtime-version: '5.15' 
+sdk: org.kde.Sdk
 command: /usr/bin/bash
 
 finish-args:
@@ -9,13 +9,11 @@ finish-args:
 
 modules:
   - shared-modules/libusb/libusb.json
+
   - name: pcsc-lite
     config-opts:
-       - --disable-libudev
        - --disable-libsystemd
        - --without-systemdsystemunitdir
-       - --disable-serial
-       - --disable-documentation
     post-install:
        - rm /app/sbin/pcscd
        - rmdir /app/sbin || true
@@ -30,6 +28,11 @@ modules:
          url: https://ccid.apdu.fr/files/ccid-1.5.0.tar.bz2
          sha256: 81549b3422469d503996d03a3aed2ef1375b359167f10d66be9e3844e729322e
 
+  - name: pcsc-tools
+    sources:
+       - type: archive
+         url: https://github.com/LudovicRousseau/pcsc-tools/archive/refs/tags/1.6.0.tar.gz
+         sha256: 63ffa6d47281b4a2ff584a1da905e43a7d70f4902083b0703e71cf6143f0888a
 
   - name: opensc
     buildsystem: autotools
