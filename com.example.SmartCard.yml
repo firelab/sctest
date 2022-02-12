@@ -5,7 +5,7 @@ sdk: org.kde.Sdk
 command: /usr/bin/bash
 
 build-options:
-   cflags: "-O2 -g"
+   strip: false
 
 finish-args:
    - --socket=pcsc
@@ -24,6 +24,8 @@ modules:
        - type: archive
          url: https://pcsclite.apdu.fr/files/pcsc-lite-1.9.5.tar.bz2
          sha256: 9ee3f9b333537562177893559ad4f7b8d5c23ebe828eef53056c02db14049d08
+       - type: patch
+         path: pcsc-lite-1.9.1-maxreaders.patch
 
   - name: pcsc-lite-ccid
     sources:
